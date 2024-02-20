@@ -1,11 +1,21 @@
+import CriptoHistorial from "./info/CriptoHistorial";
+import Criptoinfo from "./info/Criptoinfo";
+import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router-dom";
+import "./CriptoPage.css";
 
 const CriptoPage = () => {
-
 	const params = useParams();
+	const [cripto, cargandoCripto] = useAxios(`assets/${params.id}`);
+	const [history, cargandoHistory] = useAxios(`assets/${params.id}/history?interval=d1`);
 
+	if (cargandoCripto || cargandoHistory) return <span>Cargando...</span>
+	
 	return (
-		<h1>Soy la criptomoneda {params.id}</h1>
+		<div className="cripto-page-container">
+			{ cripto && (<Criptoinfo cripto={cripto} />) }
+			{ history && (<CriptoHistorial history={history} />) }
+		</div>
 	)
 }
 
