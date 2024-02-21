@@ -4,7 +4,8 @@ import App from "./components/App";
 import Cuadricula from './components/Cuadricula';
 import Pagina404 from './components/404';
 import Home from './components/Home';
-import Perfil from './components/Perfil';
+import Perfil from './components/usuarios/Perfil';
+import Login from './components/usuarios/Login';
 import CriptoPage from './components/cripto/CriptoPage';
 import { UserContextProvider } from './context/UserContext';
 import './main.css';
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
 					<Route index element={<Cuadricula />}/>
 					<Route path=":id" element={<CriptoPage />}/>
 				</Route>
+				<Route path="/login" element={<Login />}/>
 				<Route path="*" element={<Pagina404 />}/>
 			</Routes>
 		</BrowserRouter>
